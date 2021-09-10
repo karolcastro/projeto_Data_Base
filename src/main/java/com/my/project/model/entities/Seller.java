@@ -2,6 +2,7 @@ package com.my.project.model.entities;
 
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @ToString
@@ -9,16 +10,16 @@ import java.util.Date;
 @Setter
 @RequiredArgsConstructor
 @EqualsAndHashCode
-public class Seller {
+public class Seller implements Serializable {
     private Integer id;
     private String name;
     private String email;
     private Date birthDate;
     private Double baseSalary;
 
-    private Department department;
+    private SellerDao department;
 
-    public Seller(Integer id, String name, String email, Date birthDate, Double baseSalary, Department department) {
+    public Seller(Integer id, String name, String email, Date birthDate, Double baseSalary, SellerDao department) {
         this.id = id;
         this.name = name;
         this.email = email;

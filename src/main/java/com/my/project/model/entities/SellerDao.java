@@ -9,11 +9,11 @@ import java.io.Serializable;
 @Setter
 @RequiredArgsConstructor
 @EqualsAndHashCode
-public class Department implements Serializable {
+public class SellerDao implements Serializable {
     private Integer id;
     private String name;
 
-    public Department(Integer id, String name) {
+    public SellerDao(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
