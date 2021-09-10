@@ -16,6 +16,12 @@ configurations {
 
 repositories {
 	mavenCentral()
+	maven {
+		url "https://maven.springframework.org/release"
+	}
+	maven {
+		url "https://maven.restlet.com"
+	}
 }
 
 ext {
@@ -24,12 +30,45 @@ ext {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation('org.springframework.boot:spring-boot-starter-web') {
+		exclude module: 'spring-boot-starter-tomcat'
+	}
+	implementation('org.springframework.boot:spring-boot-starter-jetty')
+	implementation('com.newrelic.agent.java:newrelic-api:5.11.0')
+	implementation('org.projectlombok:lombok')
+	implementation('com.fasterxml.jackson.module:jackson-module-parameter-names:2.11.1')
+	implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+	implementation('org.springframework.boot:spring-boot-starter-actuator')
+	implementation('org.springframework.boot:spring-boot-starter-validation')
+	implementation('org.springframework.boot:spring-boot-starter-cache')
+	implementation('org.springframework.cloud:spring-cloud-starter-sleuth')
+	implementation('org.springframework.cloud:spring-cloud-starter-config')
+	implementation('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.11.1')
+
 	compileOnly 'org.projectlombok:lombok'
+
 	runtimeOnly 'mysql:mysql-connector-java'
+	runtimeOnly('com.h2database:h2')
+
 	annotationProcessor 'org.projectlombok:lombok'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.testcontainers:junit-jupiter'
 	testImplementation 'org.testcontainers:mysql'
+
+
+	annotationProcessor('org.projectlombok:lombok')
+
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
+
+tasks.withType(Checkstyle) {
+	reports {
+		xml.enabled true
+		html.enabled false
+	}
 }
 
 dependencyManagement {

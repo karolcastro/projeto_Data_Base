@@ -1,7 +1,11 @@
 package com.my.project.model.entities;
 
+import com.sun.istack.NotNull;
 import lombok.*;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,7 +14,12 @@ import java.util.Date;
 @Setter
 @RequiredArgsConstructor
 @EqualsAndHashCode
+@Entity
+@Table(name = "tb_seller")
 public class Seller implements Serializable {
+
+    @Id
+    @NotNull
     private Integer id;
     private String name;
     private String email;

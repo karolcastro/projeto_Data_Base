@@ -1,4 +1,4 @@
-package com.my.project.model.dao;
+package com.my.project.model.DTO;
 
 import com.my.project.model.entities.Department;
 
