@@ -10,7 +10,6 @@ import java.util.Date;
 @Getter
 @Setter
 @RequiredArgsConstructor
-@Entity
 @Table(name = "seller")
 public class Seller implements Serializable {
 
@@ -30,6 +29,7 @@ public class Seller implements Serializable {
     @Column(nullable = false)
     private Double baseSalary;
 
+    private Department department;
 
     public Seller(Integer id, String name, String email, Date birthDate, Double baseSalary) {
         this.id = id;

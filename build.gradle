@@ -22,6 +22,9 @@ repositories {
 	maven {
 		url "https://maven.restlet.com"
 	}
+	maven {
+		url 'https://maven.springframework.org/milestone/'
+	}
 }
 
 ext {
