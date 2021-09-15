@@ -38,12 +38,16 @@ public class Program {
             System.out.println(obj);
         }
 
-        System.out.println("===Test  : seller findAll ===");
+        System.out.println("===Test 3 : seller findAll ===");
         list = sellerDTO.findAll();
         for (Seller obj : list) {
             System.out.println(obj);
         }
 
+        System.out.println("===Test  4: seller findAll ===");
+        Seller newSeller = new Seller(null, "Bob", "bob@gmail.com", new Date(), 4000.0, department);
+        sellerDTO.insert(newSeller);
+        System.out.println("Inserted! New id = " + newSeller.getId());
 
     }
 }

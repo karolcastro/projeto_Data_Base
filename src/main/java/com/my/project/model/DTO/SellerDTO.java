@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface SellerDTO {
 
-    void insert(SellerDTO obj);
+    void insert(Seller obj);
 
-    void update(SellerDTO obj);
+    void update(Seller obj);
 
     void deleteById(Integer id);
 

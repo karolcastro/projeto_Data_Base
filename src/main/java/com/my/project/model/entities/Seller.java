@@ -39,4 +39,8 @@ public class Seller implements Serializable {
         this.baseSalary = baseSalary;
 
     }
+    public Seller(Object id, String name, String email, Date birthDate, double baseSalary, Department department) {
+    }
+
+
 }
