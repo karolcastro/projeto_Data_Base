@@ -31,9 +31,15 @@ public class Program {
         Seller seller = sellerDTO.findById(3);
         System.out.println(seller);
 
-        System.out.println("===Test 1 : seller findByDepartment ===");
+        System.out.println("===Test 2 : seller findByDepartment ===");
         Department department = new Department(2, null);
         List<Seller> list = sellerDTO.findByDepartment(department);
+        for (Seller obj : list) {
+            System.out.println(obj);
+        }
+
+        System.out.println("===Test  : seller findAll ===");
+        list = sellerDTO.findAll();
         for (Seller obj : list) {
             System.out.println(obj);
         }

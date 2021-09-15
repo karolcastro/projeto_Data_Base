@@ -15,7 +15,7 @@ public interface SellerDTO {
 
     Seller findById(Integer id);
 
-    List<SellerDTO> findAll();
+    List<Seller> findAll();
 
     List<Seller> findByDepartment(Department department);
 }
