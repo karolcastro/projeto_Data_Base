@@ -4,10 +4,12 @@ import com.my.project.model.DTO.DTOFactory;
 import com.my.project.model.DTO.SellerDTO;
 import com.my.project.model.entities.Department;
 import com.my.project.model.entities.Seller;
+import jdk.dynalink.linker.LinkerServices;
 import org.springframework.boot.SpringApplication;
 
 import java.sql.*;
 import java.util.Date;
+import java.util.List;
 
 public class Program {
     public  static void main(String[] args) throws SQLException {
@@ -28,6 +30,13 @@ public class Program {
         System.out.println("===Test 1 : seller findById ===");
         Seller seller = sellerDTO.findById(3);
         System.out.println(seller);
+
+        System.out.println("===Test 1 : seller findByDepartment ===");
+        Department department = new Department(2, null);
+        List<Seller> list = sellerDTO.findByDepartment(department);
+        for (Seller obj : list) {
+            System.out.println(obj);
+        }
 
 
     }
