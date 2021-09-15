@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import java.sql.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 public class Program {
     public  static void main(String[] args) throws SQLException {
@@ -17,6 +18,8 @@ public class Program {
 
         SpringApplication.run(Program.class, args);
         System.out.println(" aplicação rodando ");
+
+        Scanner sc = new Scanner(System.in);
 
 
         //Department obj = new Department(1, "Books");
@@ -44,16 +47,23 @@ public class Program {
             System.out.println(obj);
         }
 
-        System.out.println("===Test  4: seller findAll ===");
+        System.out.println("===Test  4: seller insert ===");
         Seller newSeller = new Seller(null, "Bob", "bob@gmail.com", new Date(), 4000.0, department);
         sellerDTO.insert(newSeller);
-        System.out.println("Inserted! New id = " + newSeller.getId());
+        System.out.println("Inserte! New id = " + newSeller.getId());
 
-        System.out.println("===Test  4: seller findAll ===");
+        System.out.println("===Test  5: seller update ===");
         seller = sellerDTO.findById(1);
         seller.setName("Leonardo");
         sellerDTO.update(seller);
-        System.out.println("Updated completed!");
+        System.out.println("Update completed!");
 
+        System.out.println("===Test  6: seller delete ===");
+        System.out.println("Enter id for delete test: ");
+        int id = sc.nextInt();
+        sellerDTO.deleteById(id);
+        System.out.println("Delete completed");
+
+        sc.close();
     }
 }

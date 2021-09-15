@@ -28,14 +28,14 @@ public class SellerDTOJDBC implements SellerDTO {
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = connection.prepareStatement(
-                        "INSERT INTO seller"
-                            +"(Name, Email, BirthDate, BaseSalary, DepartmentId)"
-                            +"VALUES"
-                            +"( ?, ?, ?, ?, ?)",
+                    "INSERT INTO seller"
+                            + "(Name, Email, BirthDate, BaseSalary, DepartmentId)"
+                            + "VALUES"
+                            + "( ?, ?, ?, ?, ?)",
                     Statement.RETURN_GENERATED_KEYS);
 
             preparedStatement.setString(1, obj.getName());
-            preparedStatement.setString(2,obj.getName());
+            preparedStatement.setString(2, obj.getName());
             preparedStatement.setDate(3, new java.sql.Date(obj.getBirthDate().getTime()));
             preparedStatement.setDouble(4, obj.getBaseSalary());
             preparedStatement.setInt(5, obj.getDepartment().getId());
@@ -49,14 +49,12 @@ public class SellerDTOJDBC implements SellerDTO {
                     obj.setId(id);
                 }
                 DB.closeResultSet(resultSet);
-            }
-            else {
+            } else {
                 throw new DbException("Unexpected error! No rows affected!");
             }
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
-        }
-        finally {
+        } finally {
             DB.closeStatement(preparedStatement);
         }
     }
@@ -72,7 +70,7 @@ public class SellerDTOJDBC implements SellerDTO {
                     Statement.RETURN_GENERATED_KEYS);
 
             preparedStatement.setString(1, obj.getName());
-            preparedStatement.setString(2,obj.getName());
+            preparedStatement.setString(2, obj.getName());
             preparedStatement.setDate(3, new java.sql.Date(obj.getBirthDate().getTime()));
             preparedStatement.setDouble(4, obj.getBaseSalary());
             preparedStatement.setInt(5, obj.getDepartment().getId());
@@ -80,14 +78,27 @@ public class SellerDTOJDBC implements SellerDTO {
 
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
-        }
-        finally {
+        } finally {
             DB.closeStatement(preparedStatement);
         }
     }
 
     @Override
     public void deleteById(Integer id) {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement("" +
+                    "DELETE FROM seller WHERE Id = ?");
+
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeStatement(preparedStatement);
+        }
 
     }
 
@@ -114,11 +125,9 @@ public class SellerDTOJDBC implements SellerDTO {
 
             }
             return null;
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             throw new DbException(e.getMessage());
-        }
-        finally {
+        } finally {
             DB.closeStatement(preparedStatement);
             DB.closeResultSet(resultSet);
         }
@@ -169,11 +178,9 @@ public class SellerDTOJDBC implements SellerDTO {
                 list.add(obj);
             }
             return list;
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             throw new DbException(e.getMessage());
-        }
-        finally {
+        } finally {
             DB.closeStatement(preparedStatement);
             DB.closeResultSet(resultSet);
         }
@@ -188,8 +195,8 @@ public class SellerDTOJDBC implements SellerDTO {
                     "SELECT coursejdbc.seller.*,coursejdbc.department.Name as DepName\n" +
                             "FROM seller INNER JOIN department\n" +
                             "ON seller.DepartmentId = department.Id\n" +
-                            "WHERE seller.DepartmentId = ?\n"+
-                    "ORDER BY seller.DepartmentId");
+                            "WHERE seller.DepartmentId = ?\n" +
+                            "ORDER BY seller.DepartmentId");
 
             preparedStatement.setInt(1, department.getId());
             preparedStatement.executeQuery();
@@ -210,11 +217,9 @@ public class SellerDTOJDBC implements SellerDTO {
                 list.add(obj);
             }
             return list;
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             throw new DbException(e.getMessage());
-        }
-        finally {
+        } finally {
             DB.closeStatement(preparedStatement);
             DB.closeResultSet(resultSet);
         }
