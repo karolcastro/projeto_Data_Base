@@ -49,5 +49,11 @@ public class Program {
         sellerDTO.insert(newSeller);
         System.out.println("Inserted! New id = " + newSeller.getId());
 
+        System.out.println("===Test  4: seller findAll ===");
+        seller = sellerDTO.findById(1);
+        seller.setName("Leonardo");
+        sellerDTO.update(seller);
+        System.out.println("Updated completed!");
+
     }
 }

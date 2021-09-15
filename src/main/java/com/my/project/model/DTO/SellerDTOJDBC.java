@@ -63,9 +63,28 @@ public class SellerDTOJDBC implements SellerDTO {
 
     @Override
     public void update(Seller obj) {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(
+                    "UPDATE seller\n" +
+                            "SET Name = ?, Email = ?, BirthDate = ?, BaseSalary = ?, DepartmentId = ?\n" +
+                            "WHERE Id = ?",
+                    Statement.RETURN_GENERATED_KEYS);
 
+            preparedStatement.setString(1, obj.getName());
+            preparedStatement.setString(2,obj.getName());
+            preparedStatement.setDate(3, new java.sql.Date(obj.getBirthDate().getTime()));
+            preparedStatement.setDouble(4, obj.getBaseSalary());
+            preparedStatement.setInt(5, obj.getDepartment().getId());
+            preparedStatement.setInt(6, obj.getId());
+
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+        finally {
+            DB.closeStatement(preparedStatement);
+        }
     }
-
 
     @Override
     public void deleteById(Integer id) {
